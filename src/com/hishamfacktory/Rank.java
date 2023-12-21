@@ -2,7 +2,7 @@ package com.hishamfacktory;
 
 public enum Rank {
     ACE("Ace",11),
-    ONE("ONe",1),
+    ONE("One",1),
     TWO("Two",2),
     THREE("Three",3),
     FOUR("Four",4),

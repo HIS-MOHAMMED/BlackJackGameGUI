@@ -32,6 +32,11 @@ public class Deck {
     public void addCard(Card card){
         deck.add(card);
     }
+    public Card takeCard(){
+        Card cardToTake = new Card(deck.get(0));
+        deck.remove(0);
+        return cardToTake;
+    }
 
 
     public String toString(){
