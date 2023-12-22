@@ -11,9 +11,8 @@ public class Main {
 
         System.out.println("Test hand now has the following cards: ");
         System.out.println(hand);
-        System.out.println("Test Deck now looks like this: ");
-        deck.shuffle();
-        System.out.println(deck);
+        System.out.print("Test hand now has value is: ");
+        System.out.println(hand.calculateValue());
 
 
     }

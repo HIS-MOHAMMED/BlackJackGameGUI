@@ -15,7 +15,17 @@ public class Hand {
         discard.addCard(hand.get(0));
     }
     public int calculateValue(){
-        return 0;
+        //initialize variable to count total value
+        int value = 0;
+        //iterate through hand to calculate the value
+        for(Card card: hand){
+            if(card.getValue() == 11 && value + 11 > 21 ){
+                value += 1;
+                continue;
+            }
+            value += card.getValue();
+        }
+        return value;
     }
     public String toString(){
         String output  = "";
