@@ -1,18 +1,15 @@
 package com.hishamfacktory;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args){
+        Scanner sc  = new Scanner(System.in);
         System.out.println("Welcome to Blackjack Game.");
-        Deck deck = new Deck(true);
-        Hand hand = new Hand();
-        hand.takeCardFromDeck(deck);
-        hand.takeCardFromDeck(deck);
-        hand.takeCardFromDeck(deck);
+        System.out.print("Can you give me your name: ");
+        String name = sc.next();
+        Game game = new Game(name);
 
-        System.out.println("Test hand now has the following cards: ");
-        System.out.println(hand);
-        System.out.print("Test hand now has value is: ");
-        System.out.println(hand.calculateValue());
 
 
     }

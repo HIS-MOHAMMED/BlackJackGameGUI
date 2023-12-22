@@ -25,7 +25,7 @@ public abstract class Person {
         deck.addCard(discard.takeCard());
     }
     public boolean hasBlackJack(){
-        if(hand.calculateValue() == 21) return true;
+        if(this.getHand().calculateValue() == 21) return true;
         else return false;
     }
 }

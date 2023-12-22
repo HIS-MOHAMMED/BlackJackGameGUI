@@ -34,4 +34,7 @@ public class Hand {
         }
         return output;
     }
+    public String toString(boolean flag){
+        return "" + this.hand.get(0);
+    }
 }
