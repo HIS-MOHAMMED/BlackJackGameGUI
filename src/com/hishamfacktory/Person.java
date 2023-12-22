@@ -1,12 +1,12 @@
 package com.hishamfacktory;
 
-public class Person {
+public abstract class Person {
     private String name;
     private Hand hand;
 
-    public Person(String name, Hand hand){
-        this.name = name;
-        this.hand = hand;
+    public Person(){
+        this.name = "";
+        this.hand = new Hand();
     }
     public Hand getHand(){
         return hand;
