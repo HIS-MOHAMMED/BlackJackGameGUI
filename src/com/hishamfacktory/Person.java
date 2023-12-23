@@ -22,7 +22,7 @@ public abstract class Person {
         this.name = name;
     }
     public void hit(Deck deck,Deck discard){
-        deck.addCard(discard.takeCard());
+        discard.addCard(deck.takeCard());
     }
     public boolean hasBlackJack(){
         if(this.getHand().calculateValue() == 21) return true;

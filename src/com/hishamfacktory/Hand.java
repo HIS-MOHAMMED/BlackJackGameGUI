@@ -27,14 +27,17 @@ public class Hand {
         }
         return value;
     }
-    public String toString(){
+    public String toString(String str){
+        System.out.println(str + " hand looks like this: ");
         String output  = "";
         for(Card card : hand){
             output += card + " - ";
         }
+        output += " Valued at: " +calculateValue();
         return output;
     }
     public String toString(boolean flag){
+        System.out.println("The dealer's hand looks like this: ");
         return "" + this.hand.get(0);
     }
 }
