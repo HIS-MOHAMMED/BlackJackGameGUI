@@ -9,8 +9,5 @@ public class Main {
         System.out.print("Can you give me your name: ");
         String name = sc.next();
         Game game = new Game(name);
-
-
-
     }
 }

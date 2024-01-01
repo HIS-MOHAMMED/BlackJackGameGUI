@@ -22,10 +22,24 @@ public abstract class Person {
         this.name = name;
     }
     public void hit(Deck deck,Deck discard){
-        discard.addCard(deck.takeCard());
+        if(!deck.hasCard()){
+            deck.reloadDeckFromDiscarded(discard);
+        }
+        this.hand.takeCardFromDeck(deck);
+        System.out.println(this.getName() + " get card");
+        this.printHand();
     }
     public boolean hasBlackJack(){
         if(this.getHand().calculateValue() == 21) return true;
         else return false;
+    }
+    public void printHand(){
+        System.out.println(this.getName() +  " hand looks like this: ");
+        String output  = "";
+        for(Card card : this.hand.getHand()){
+            output += card + " - ";
+        }
+        output += " Valued at: " + this.hand.calculateValue();
+        System.out.println(output);
     }
 }

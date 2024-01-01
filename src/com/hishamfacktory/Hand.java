@@ -8,6 +8,9 @@ public class Hand {
     public Hand(){
         hand = new ArrayList<>();
     }
+    public ArrayList<Card> getHand(){
+        return  this.hand;
+    }
     public void takeCardFromDeck(Deck deck){
         hand.add(deck.takeCard());
     }
@@ -28,16 +31,13 @@ public class Hand {
         return value;
     }
     public String toString(String str){
-        System.out.println(str + " hand looks like this: ");
-        String output  = "";
-        for(Card card : hand){
-            output += card + " - ";
-        }
-        output += " Valued at: " +calculateValue();
-        return output;
+        return "";
     }
     public String toString(boolean flag){
         System.out.println("The dealer's hand looks like this: ");
         return "" + this.hand.get(0);
+    }
+    public Card getCard(int index){
+        return this.hand.get(index);
     }
 }

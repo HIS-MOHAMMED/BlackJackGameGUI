@@ -37,6 +37,29 @@ public class Deck {
         deck.remove(0);
         return cardToTake;
     }
+    public boolean hasCard(){
+        if(deck.size() > 0){
+            return true;
+        }else {
+            return false;
+        }
+    }
+    public void emptyDeck(){
+        deck.clear();
+    }
+    public void addCards(ArrayList<Card> cards){
+        this.deck.addAll(cards);
+    }
+    public void reloadDeckFromDiscarded(Deck discarded){
+        this.addCards(discarded.getCards());
+        this.shuffle();
+        discarded.emptyDeck();
+        System.out.println("Ran out of cards, Creating new deck from discarded pile & shuffling the deck.");
+
+    }
+    public ArrayList<Card> getCards(){
+        return this.deck;
+    }
 
 
     public String toString(){
