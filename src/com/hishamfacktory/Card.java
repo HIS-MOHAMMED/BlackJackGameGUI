@@ -1,8 +1,8 @@
 package com.hishamfacktory;
 
 public class Card {
-    private Suit suit;
-    private Rank rank;
+    private final Suit suit;
+    private final Rank rank;
 
     public Card(Suit suit, Rank rank){
 

@@ -18,7 +18,7 @@ public class Deck {
     }
     public void shuffle(){
         ArrayList<Card> shuffled = new ArrayList<>();
-        while(deck.size() > 0){
+        while(!deck.isEmpty()){
             int cardToPull = (int)(Math.random() * (deck.size()-1));
             shuffled.add(deck.get(cardToPull));
             deck.remove(cardToPull);
@@ -26,7 +26,7 @@ public class Deck {
         deck = shuffled;
 
         //shorter way to shuffle the deck by using collections
-        //Collections.shuffle(deck,new Random());
+        //.shuffle(deck,new Random());
 
    }
     public void addCard(Card card){
@@ -38,11 +38,7 @@ public class Deck {
         return cardToTake;
     }
     public boolean hasCard(){
-        if(deck.size() > 0){
-            return true;
-        }else {
-            return false;
-        }
+        return !deck.isEmpty();
     }
     public void emptyDeck(){
         deck.clear();
@@ -59,6 +55,9 @@ public class Deck {
     }
     public ArrayList<Card> getCards(){
         return this.deck;
+    }
+    public int cardsLeft(){
+        return deck.size();
     }
 
 

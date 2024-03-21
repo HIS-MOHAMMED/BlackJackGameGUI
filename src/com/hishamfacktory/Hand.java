@@ -14,9 +14,6 @@ public class Hand {
     public void takeCardFromDeck(Deck deck){
         hand.add(deck.takeCard());
     }
-    public void discardHandToDeck(Deck discard){
-        discard.addCard(hand.get(0));
-    }
     public int calculateValue(){
         //initialize variable to count total value
         int value = 0;
@@ -29,6 +26,11 @@ public class Hand {
             value += card.getValue();
         }
         return value;
+    }
+    public void discardHandToDeck(Deck discardDeck){
+        discardDeck.addCards(hand);
+
+        hand.clear();
     }
     public String toString(String str){
         return "";

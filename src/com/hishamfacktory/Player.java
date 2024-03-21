@@ -27,7 +27,6 @@ public class Player extends Person{
             }else{
                 this.makeDecision(deck,discarded);
             }
-
         }else{
             System.out.println("You stand...");
         }

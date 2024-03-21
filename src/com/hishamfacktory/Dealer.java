@@ -1,8 +1,8 @@
 package com.hishamfacktory;
 
 public class Dealer extends  Person{
-    public Dealer(){
-        super.setName("Dealer");
+    public Dealer(String name){
+        super.setName(name);
     }
     public void printFirstHand(){
         System.out.println(this.getName() +  " hand looks like this: ");

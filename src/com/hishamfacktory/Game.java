@@ -12,14 +12,14 @@ public class Game {
     /*
     Constructor for Game,creates our variables and starts the game
      */
-    public Game(String name){
+    public Game(String Player_name,String Dealer_name){
         //create a new deck with 52 cards
         deck = new Deck(true);
         discarded = new Deck();
 
         //create the people
-        dealer = new Dealer();
-        player = new Player(name);
+        dealer = new Dealer(Dealer_name);
+        player = new Player(Player_name);
 
         //shuffle the deck and start the round
         deck.shuffle();
@@ -27,6 +27,29 @@ public class Game {
     }
 
     public void startRound() {
+        Scanner sc = new Scanner(System.in);
+        if(wins > 0 || losses > 0 || pushes > 0) {
+            System.out.print("\nQuit or keep continue(y or n?)");
+            String result = sc.next();
+            try {
+                if (result.equals("Y") || result.equals("y") || result.equals("yes")) {
+                    System.out.println(".............................................New Round................................................................");
+                    System.out.println("Starting  Next Round.....Wins: " + wins + " Loses: " + losses + " Pushes: " + pushes +"\n");
+                    player.getHand().discardHandToDeck(discarded);
+                    dealer.getHand().discardHandToDeck(discarded);
+                }else{
+                    System.out.println("Thank You");
+                    System.out.println("Final Results: Wins= " + wins + " Loses= " + losses + " Pushes= " + pushes);
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid Input");
+                startRound();
+            }
+        }
+        //check make sure the deck has at least 4 cards
+        if(deck.cardsLeft() < 4){
+            deck.reloadDeckFromDiscarded(discarded);
+        }
         //Give the dealer two cards
         dealer.getHand().takeCardFromDeck(deck);
         dealer.getHand().takeCardFromDeck(deck);
@@ -58,33 +81,39 @@ public class Game {
             startRound();
         }
         player.makeDecision(deck,discarded);
-    }
-    public void finalResult(int p, int d) {
-        if (p == 21) {
-            wins++;
-            System.out.println("You Won.");
-        } else if (p > d && p < 21) {
-            wins++;
-            System.out.println("You Won.");
-        } else if (p < 21 && d > 21) {
-            wins++;
-            System.out.println("The dealer busts.");
-        } else if (d == 21) {
+        if(player.getHand().calculateValue() > 21){
+            System.out.println("You have gone over 21 ");
             losses++;
-            System.out.println("The dealer Won.");
-        } else if (p > 21) {
-            losses++;
-            System.out.println("You busts");
-        } else if (d > p && d < 21) {
-            losses++;
-            System.out.println("You busts");
+            startRound();
         }
-    }
-    public void printDiscarded(){
-        System.out.println("Discarded Cards: ");
-        for(Card card : discarded.deck){
-            System.out.print(card.toString() + " | ");
+        //Now it's the dealer's turn
+        dealer.printHand();
+        while(dealer.getHand().calculateValue() < 17){
+            dealer.hit(deck,discarded);
         }
-        System.out.println();
+        //prepare results to make comparisons
+        int  player_result = player.getHand().calculateValue();
+        int dealer_result = dealer.getHand().calculateValue();
+        if(dealer_result > 21){
+            System.out.println("Dealer busts..");
+            wins++;
+        }
+        else if(dealer_result > player_result){
+            System.out.println("You Lose..");
+            losses++;
+        }
+        else if(player_result > dealer_result){
+            System.out.println("You win..");
+            wins++;
+        }
+        else {
+            System.out.println("Push");
+            pushes++;
+        }
+        //start new round
+        startRound();
+
+
     }
+
 }

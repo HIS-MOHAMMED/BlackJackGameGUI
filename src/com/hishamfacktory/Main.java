@@ -6,8 +6,10 @@ public class Main {
     public static void main(String[] args){
         Scanner sc  = new Scanner(System.in);
         System.out.println("Welcome to Blackjack Game.");
-        System.out.print("Can you give me your name: ");
-        String name = sc.next();
-        Game game = new Game(name);
+        System.out.print("Dealer name:");
+        String dealer_name = sc.next();
+        System.out.print("Player name: ");
+        String player_name = sc.next();
+        Game game = new Game(player_name,dealer_name+" (dealer)");
     }
 }

@@ -30,8 +30,7 @@ public abstract class Person {
         this.printHand();
     }
     public boolean hasBlackJack(){
-        if(this.getHand().calculateValue() == 21) return true;
-        else return false;
+        return this.getHand().calculateValue() == 21;
     }
     public void printHand(){
         System.out.println(this.getName() +  " hand looks like this: ");
