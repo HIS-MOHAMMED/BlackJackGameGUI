@@ -8,10 +8,12 @@ public class Deck {
     }
     public Deck(boolean makeFullDeck){
         deck = new ArrayList<>();
-        if(makeFullDeck){
-            for(Suit suit : Suit.values()){
-                for(Rank rank : Rank.values()){
-                    deck.add(new Card(suit,rank));
+        if(makeFullDeck) {
+            for (int i = 0; i < 8; i++) {
+                for (Suit suit : Suit.values()) {
+                    for (Rank rank : Rank.values()) {
+                        deck.add(new Card(suit, rank));
+                    }
                 }
             }
         }
