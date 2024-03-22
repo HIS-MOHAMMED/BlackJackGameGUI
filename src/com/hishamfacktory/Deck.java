@@ -50,7 +50,7 @@ public class Deck {
         this.addCards(discarded.getCards());
         this.shuffle();
         discarded.emptyDeck();
-        System.out.println("Ran out of cards, Creating new deck from discarded pile & shuffling the deck.");
+        System.out.println("*****************Ran out of cards, Creating new deck from discarded pile & shuffling the deck.***************************\n");
 
     }
     public ArrayList<Card> getCards(){

@@ -2,6 +2,7 @@ package com.hishamfacktory;
 
 public class Dealer extends  Person{
     public Dealer(String name){
+        super.setBankRoll(2000.0);
         super.setName(name);
     }
     public void printFirstHand(){

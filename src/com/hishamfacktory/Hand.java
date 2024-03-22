@@ -29,15 +29,7 @@ public class Hand {
     }
     public void discardHandToDeck(Deck discardDeck){
         discardDeck.addCards(hand);
-
         hand.clear();
-    }
-    public String toString(String str){
-        return "";
-    }
-    public String toString(boolean flag){
-        System.out.println("The dealer's hand looks like this: ");
-        return "" + this.hand.get(0);
     }
     public Card getCard(int index){
         return this.hand.get(index);

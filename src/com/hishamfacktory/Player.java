@@ -3,7 +3,8 @@ package com.hishamfacktory;
 import java.util.Scanner;
 
 public class Player extends Person{
-    public Player(String name){
+    public Player(String name,double bankRoll){
+        super.setBankRoll(bankRoll);
         super.setName(name);
     }
     public void makeDecision(Deck deck, Deck discarded){

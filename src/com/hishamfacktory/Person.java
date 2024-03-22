@@ -4,9 +4,20 @@ public abstract class Person {
     private String name;
     private Hand hand;
 
+    public double getBankRoll() {
+        return bankRoll;
+    }
+
+    public void setBankRoll(double bankRoll) {
+        this.bankRoll = bankRoll;
+    }
+
+    private double bankRoll;
+
     public Person(){
         this.name = "";
         this.hand = new Hand();
+        this.bankRoll = 0.0;
     }
     public Hand getHand(){
         return hand;
@@ -40,5 +51,11 @@ public abstract class Person {
         }
         output += " Valued at: " + this.hand.calculateValue();
         System.out.println(output);
+    }
+    public void increase_budget(double betRound){
+        this.bankRoll += betRound;
+    }
+    public void decrease_budget(double betRound){
+        this.bankRoll -= betRound;
     }
 }
