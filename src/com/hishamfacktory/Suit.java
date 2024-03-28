@@ -1,10 +1,10 @@
 package com.hishamfacktory;
 
 public enum Suit {
-    CLUB("Club"),
-    DIAMOND("Diamond"),
-    HEART("Heart"),
-    SPADE("Spade");
+    CLUB("Clubs"),
+    DIAMOND("Diamonds"),
+    HEART("Hearts"),
+    SPADE("Spades");
 
     String suitName;
     Suit(String suitName){
@@ -13,6 +13,6 @@ public enum Suit {
 
     @Override
     public String toString() {
-        return super.toString();
+        return suitName;
     }
 }

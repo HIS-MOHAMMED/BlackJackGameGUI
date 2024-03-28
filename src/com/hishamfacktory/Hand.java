@@ -31,6 +31,9 @@ public class Hand {
         discardDeck.addCards(hand);
         hand.clear();
     }
+    public int getHandSize(){
+        return  hand.size();
+    }
     public Card getCard(int index){
         return this.hand.get(index);
     }

@@ -1,5 +1,8 @@
 package com.hishamfacktory;
 
+import javax.swing.*;
+import java.awt.*;
+
 public abstract class Person {
     private String name;
     private Hand hand;
@@ -38,12 +41,11 @@ public abstract class Person {
         }
         this.hand.takeCardFromDeck(deck);
         System.out.println(this.getName() + " get card");
-        this.printHand();
     }
     public boolean hasBlackJack(){
         return this.getHand().calculateValue() == 21;
     }
-    public void printHand(){
+    public void printHand(JLabel[] cardPics){
         System.out.println(this.getName() +  " hand looks like this: ");
         String output  = "";
         for(Card card : this.hand.getHand()){
@@ -51,6 +53,18 @@ public abstract class Person {
         }
         output += " Valued at: " + this.hand.calculateValue();
         System.out.println(output);
+        //iterate through each card, update pic, hide remaining
+        for (int i = 0; i < 11; i++) {
+            cardPics[i].setVisible(false);
+        }
+        for (int i = 0; i < this.hand.getHandSize() ; i++) {
+            String rank = this.hand.getCard(i).getRank().toString();
+            String suit = this.hand.getCard(i).getSuit().toString();
+            String filename = rank + suit +".png";
+            System.out.println(filename);
+            cardPics[i].setIcon(new ImageIcon(new ImageIcon(Game.IMAGE_DIR+filename).getImage().getScaledInstance(Game.CARD_WIDTH,Game.CARD_HEIGHT, Image.SCALE_SMOOTH)));
+            cardPics[i].setVisible(true);
+        }
     }
     public void increase_budget(double betRound){
         this.bankRoll += betRound;
