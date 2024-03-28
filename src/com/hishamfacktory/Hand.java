@@ -27,6 +27,9 @@ public class Hand {
         }
         return value;
     }
+    public int calculateFirstCardValue(){
+        return this.getCard(0).getValue();
+    }
     public void discardHandToDeck(Deck discardDeck){
         discardDeck.addCards(hand);
         hand.clear();

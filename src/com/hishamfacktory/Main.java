@@ -13,8 +13,6 @@ public class Main {
         Game blackJack = new Game("Hisham","Dealer",10,100);
         frame.add(blackJack);
         frame.setVisible(true);
-        System.out.println("Project directory to start finding images from is: " + System.getProperty("user.dir"));
-
 
 
 //        Scanner sc  = new Scanner(System.in);
