@@ -47,23 +47,6 @@ public class Game  extends JPanel {
         startRound();
 
     }
-
-    /*
-    Constructor for Game,creates our variables and starts the game
-     */
-//    public Game(String Player_name,double player_bankRoll,String dealer_name,double betRound){
-//        //create a new deck with 52 cards
-//        deck = new Deck(true);
-//        discarded = new Deck();
-//
-//        //create the people
-//        dealer = new Dealer(dealer_name);
-//        player = new Player(Player_name,player_bankRoll);
-//        this.betRound = betRound;
-//
-//        //shuffle the deck and start the round
-//        deck.shuffle();
-//    }
     private void setupGUI(){
         //size of JPanal
         this.setSize(900,700);
@@ -75,14 +58,13 @@ public class Game  extends JPanel {
         btnHit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                lblGameMessage.setText("Stand Or Hit?");
                 player.hit(deck,discarded);
-                updateScreen();
-                if(checkBusts()){
-                    dealer.printHand(lbldealer);
-                    Blacks();
-                    updateScreenFull();
-                }
+                 updateScreen();
+                 checkBusts();
+                 playerHas21();
+                 if(player.getHand().calculateValue() < 21){
+                     lblGameMessage.setText("Hit or Stand??");
+                 }
             }
         });
 
@@ -93,9 +75,15 @@ public class Game  extends JPanel {
         btnStand.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Stand();
+                DealerTurns();
+                hasBlacks();
+                checkWins();
+                updateScreen();
+                dealer.printHand(lbldealer);
+
                 btnStand.setVisible(false);
                 btnHit.setVisible(false);
+                btnNextRound.setVisible(true);
             }
         });
 
@@ -106,10 +94,10 @@ public class Game  extends JPanel {
         btnNextRound.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateScreenFull();
-                lblGameMessage.setText("Starting round! Hit or Stand?");
+                lblGameMessage.setText("Starting round!Hit or Stand?");
                 btnHit.setVisible(true);
                 btnStand.setVisible(true);
+                btnNextRound.setVisible(false);
                 startRound();
             }
         });
@@ -149,15 +137,6 @@ public class Game  extends JPanel {
             initialCardX += 50;
             initiaCardlY -= 18;
         }
-
-//        //Give the dealer two cards
-//        dealer.getHand().takeCardFromDeck(deck);
-//        dealer.getHand().takeCardFromDeck(deck);
-//
-//        //Give the player two cards
-//        player.getHand().takeCardFromDeck(deck);
-//        player.getHand().takeCardFromDeck(deck);
-
         //make scoreBorad
         lblScore = new JLabel("[Wins: 0]     [Loses: 0]    [Pushes: 0]");
         lblScore.setFont(new Font("Arial",1,12));
@@ -209,100 +188,90 @@ public class Game  extends JPanel {
         player.printHand(lblplayer);
         lblDealerHandVal.setText("Dealer's Hand Value: " + dealer.getHand().calculateFirstCardValue());
         lblPlayerHandVal.setText("Player's Hand Value: " + player.getHand().calculateValue());
+        hasBlacks();
     }
-    public void Stand(){
+    public void DealerTurns(){
         //Now it's the dealer's turn
         while(dealer.getHand().calculateValue() < 17){
             dealer.hit(deck,discarded);
+            updateScreen();
         }
+    }
+    public void checkWins(){
+        lblDealerHandVal.setText("Dealer;s Hand Value: "+dealer.getHand().calculateValue());
+
         //prepare results to make comparisons
         int  player_result = player.getHand().calculateValue();
         int dealer_result = dealer.getHand().calculateValue();
         if(dealer_result > 21){
-            wins++;
-            dealer.printHand(lbldealer);
             lblGameMessage.setText("Dealer busts..");
-            updateScreenFull();
-
+            wins++;
         }
         else if(dealer_result > player_result){
-            losses++;
-            dealer.printHand(lbldealer);
-            updateScreenFull();
             lblGameMessage.setText("You Lose..");
+            losses++;
 
         }
         else if(player_result > dealer_result){
-            wins++;
-            dealer.printHand(lbldealer);
-            updateScreenFull();
             lblGameMessage.setText("You win..");
-
-
+            wins++;
         }
         else {
-            pushes++;
-            dealer.printHand(lbldealer);
-            updateScreenFull();
             lblGameMessage.setText("Push");
+            pushes++;
 
         }
     }
-    public void Blacks(){
+    public void hasBlacks(){
         if(dealer.hasBlackJack()){
             if(player.hasBlackJack()){
                 pushes++;
-                dealer.printHand(lbldealer);
-                updateScreenFull();
                 lblGameMessage.setText("You both have 21 - Push.");
+                btnHit.setVisible(false);
+                btnStand.setVisible(false);
+                btnNextRound.setVisible(true);
 
             }
             else{
                 losses++;
-                dealer.printHand(lbldealer);
-                updateScreenFull();
                 lblGameMessage.setText("Dealer has BlackJack.You lose.");
+                btnHit.setVisible(false);
+                btnStand.setVisible(false);
+                btnNextRound.setVisible(true);
 
             }
         }
         if(player.hasBlackJack()){
             wins++;
-            dealer.printHand(lbldealer);
-            updateScreenFull();
-            lblGameMessage.setText("Player has BlackJack.You Win :)");
+            lblGameMessage.setText("Player has BlackJack.You Win:)");
+            btnHit.setVisible(false);
+            btnStand.setVisible(false);
+            btnNextRound.setVisible(true);
 
         }
-//        if(player.getHand().calculateValue() > 21){
-//            losses++;
-//            dealer.printHand(lbldealer);
-//            updateScreenFull();
-//            lblGameMessage.setText("You have gone over 21 ");
-//
-//        }
     }
     public void updateScreen(){
         lblPlayerHandVal.setText("Player's Hand Value: " + player.getHand().calculateValue());
         player.printHand(lblplayer);
         lblScore.setText("[Wins:"+wins+"]     [Loses:"+losses+"]    [Pushes:"+ pushes+"]");
     }
-    public void updateScreenFull(){
-        lblDealerHandVal.setText("Dealer's Hand Value: "+ dealer.getHand().calculateValue());
-        lblPlayerHandVal.setText("Player's Hand Value: " + player.getHand().calculateValue());
-        dealer.printHand(lbldealer);
-        player.printHand(lblplayer);
-        lblScore.setText("[Wins:"+wins+"]     [Loses:"+losses+"]    [Pushes:"+ pushes+"]");
-        btnHit.setVisible(false);
-        btnStand.setVisible(false);
+    public void playerHas21(){
+        if(player.getHand().calculateValue() == 21){
+            lblGameMessage.setText("You have 21!");
+            wins++;
+            btnHit.setVisible(false);
+            btnStand.setVisible(false);
+            btnNextRound.setVisible(true);
+        }
     }
-    public boolean checkBusts(){
+    public void checkBusts(){
         //check if the player has a bust
         if(player.getHand().calculateValue() > 21){
             lblGameMessage.setText("You Busts - Over 21");
             losses++;
             btnHit.setVisible(false);
             btnStand.setVisible(false);
-            return true;
+            btnNextRound.setVisible(true);
         }
-        return false;
     }
 }
