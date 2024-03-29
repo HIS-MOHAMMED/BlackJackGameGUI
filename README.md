@@ -26,5 +26,4 @@ This project is a simple implementation of Blackjack with a graphical user inter
 8. **Main Class**: Entry point to start the game.
 
 
-................................................................................................................
 Special Thanks for Guideness : https://kevinsguides.com/guides/code/java/javaprojs/gui-blackjack#finishing-touches
