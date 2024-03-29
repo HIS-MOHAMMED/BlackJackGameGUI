@@ -1,7 +1,9 @@
-### Overview of Blackjack Game Console in Java
+**BlackJack GUI Game**
+![image](https://github.com/HIS-MOHAMMED/BlackJackGameGUI/assets/138883671/efbe1f5b-ea8c-44d1-bac6-393945f06d9b)
+Welcome to Blackjack GUI Game, a Java Swing-based implementation of the classic casino card game Blackjack.
 
-This Java project implements a console-based version of the popular card game Blackjack. The game adheres to standard Blackjack rules and utilizes object-oriented design principles, ArrayLists, Collections, Algorithms, and ENUMs.
-
+### Overview
+This project is a simple implementation of Blackjack with a graphical user interface (GUI) built using Java Swing. It allows players to play Blackjack against a computer-controlled dealer. The game features standard Blackjack rules and basic player interaction options.
 ### Rules of the Game:
 - The game is played with a standard deck of 52 cards.
 - Players start with two cards and can choose to hit (draw another card) or stand (end their turn).
@@ -23,9 +25,6 @@ This Java project implements a console-based version of the popular card game Bl
 7. **Game Class**: Handles game logic, starting new rounds, and keeping track of scores.
 8. **Main Class**: Entry point to start the game.
 
-### Instructions:
-1. Ensure you have Java installed on your system.
-2. Clone or download this repository.
-3. Compile and run the Main class to start the game.
 
-Enjoy playing Blackjack in your console! Feel free to explore and modify the code as needed.
+................................................................................................................
+Special Thanks for Guideness : https://kevinsguides.com/guides/code/java/javaprojs/gui-blackjack#finishing-touches
